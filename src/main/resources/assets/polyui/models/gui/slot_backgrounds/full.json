@@ -1,0 +1,11 @@
+{
+  "parent": "polyui:gui/base",
+  "textures": {
+    "layer0": "polyui:gui/full"
+  },
+  "display": {
+    "gui": {
+      "scale": [1.8, 1.8, 1]
+    }
+  }
+}

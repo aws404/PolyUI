@@ -1,0 +1,6 @@
+{
+  "parent": "polyui:gui/progress/fuel/fuel_base",
+  "textures": {
+    "layer0": "polyui:gui/progress/fuel/progress_invalid"
+  }
+}

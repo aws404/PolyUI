@@ -1,0 +1,6 @@
+{
+  "parent": "polyui:gui/progress/large_arrow/large_arrow_base",
+  "textures": {
+    "layer0": "polyui:gui/progress/arrow/progress_invalid"
+  }
+}

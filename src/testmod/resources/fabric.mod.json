@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "polyui_test",
+  "version": "${version}",
+
+  "name": "PolyUI Test",
+  "description": "This is the test mod for PolyUI",
+  "authors": [
+    "aws404"
+  ],
+  "mixins": [
+    "polyui_test.mixins.json"
+  ],
+  "license": "CC0-1.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.github.aws404.polyguitest.ModInit"
+    ]
+  },
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "minecraft": "1.17.x",
+    "polyui": "*"
+  }
+}

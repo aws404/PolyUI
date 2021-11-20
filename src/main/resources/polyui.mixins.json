@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.aws404.polyui.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "ScreenHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

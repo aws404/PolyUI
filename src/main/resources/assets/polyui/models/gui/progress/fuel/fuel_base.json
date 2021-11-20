@@ -1,0 +1,8 @@
+{
+  "parent": "polyui:gui/base",
+  "display": {
+    "gui": {
+      "scale": [2, 2, 1]
+    }
+  }
+}
