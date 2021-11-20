@@ -2,14 +2,14 @@ package com.github.aws404.polyguitest.furnace;
 
 import com.github.aws404.polyguitest.ModInit;
 import eu.pb4.polymer.block.VirtualBlock;
-import eu.pb4.sgui.virtual.inventory.VirtualScreenHandler;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BeaconBlockEntity;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;

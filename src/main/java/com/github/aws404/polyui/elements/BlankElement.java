@@ -4,7 +4,6 @@ import com.github.aws404.polyui.PolyUIMod;
 import com.github.aws404.polyui.util.PolyUiUtils;
 import eu.pb4.sgui.api.SlotHolder;
 import eu.pb4.sgui.api.elements.GuiElementInterface;
-import eu.pb4.sgui.api.gui.SimpleGui;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 

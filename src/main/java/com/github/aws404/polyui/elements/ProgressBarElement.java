@@ -132,4 +132,29 @@ public class ProgressBarElement implements GuiElementInterface {
             element.setProgress((int) MathHelper.lerp(this.stateSupplier.get(), 0, 9));
         }
     }
+
+    public static class RepeatingStateLogic extends ProgressStateLogic {
+        protected final int totalProgressTicks;
+
+        protected int currentProgressTicks = 0;
+
+        public RepeatingStateLogic(int totalProgressTicks) {
+            this.totalProgressTicks = totalProgressTicks;
+        }
+
+        @Override
+        public void tick(ProgressBarElement element) {
+            this.currentProgressTicks++;
+            float pct = this.currentProgressTicks / (float) this.totalProgressTicks;
+            if (pct <= 1) {
+                int newProgressState = (int) MathHelper.lerp(pct, 0, 9);
+
+                if (element.progress != newProgressState) {
+                    element.setProgress(newProgressState);
+                }
+            } else {
+                this.currentProgressTicks = 0;
+            }
+        }
+    }
 }

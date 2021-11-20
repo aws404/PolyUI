@@ -1,8 +1,6 @@
 package com.github.aws404.polyui.util;
 
-import com.github.aws404.polyui.elements.BlankElement;
 import eu.pb4.sgui.api.SlotHolder;
-import eu.pb4.sgui.api.elements.GuiElement;
 import eu.pb4.sgui.api.elements.GuiElementBuilderInterface;
 import eu.pb4.sgui.api.elements.GuiElementInterface;
 
@@ -20,5 +18,18 @@ public class PolyUiUtils {
                 holder.setSlot(i, elementSupplier.get());
             }
         }
+    }
+
+    public static int getPlayerSlotFromGui(SlotHolder holder, int slot) {
+        if (slot >= holder.getSize()) {
+            int playerIndex;
+            if (slot >= 32) {
+                playerIndex = slot - 32;
+            } else {
+                playerIndex = slot + holder.getSize();
+            }
+            return playerIndex;
+        }
+        return -1;
     }
 }

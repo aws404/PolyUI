@@ -7,7 +7,6 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.Int2ObjectBiMap;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -27,7 +26,6 @@ public class ProgressBars {
         }
 
         MODEL_DATA.put(id, data);
-
         return id;
     }
 

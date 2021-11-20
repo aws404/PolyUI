@@ -6,14 +6,13 @@
   "name": "PolyUI",
   "description": "A sgui extension to provide greater UI functionality.",
   "authors": [
-    "Me!"
+    "aws404"
   ],
   "contact": {
     "sources": "https://github.com/aws404/PolyUI"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/polyui/icon.png",
 
   "environment": "*",
   "entrypoints": {

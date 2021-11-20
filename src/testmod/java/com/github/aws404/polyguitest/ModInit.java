@@ -6,9 +6,12 @@ import com.github.aws404.polyguitest.grinder.GrindWheelBlock;
 import com.github.aws404.polyguitest.grinder.GrinderBlock;
 import com.github.aws404.polyguitest.grinder.GrinderBlockEntity;
 import com.github.aws404.polyui.elements.BlankElement;
+import com.github.aws404.polyui.elements.ProgressBarElement;
 import com.github.aws404.polyui.elements.ProgressBarElementBuilder;
-import com.github.aws404.polyui.items.registries.GuiSprites;
 import com.github.aws404.polyui.items.SpriteGuiItem;
+import com.github.aws404.polyui.items.registries.GuiSprites;
+import com.github.aws404.polyui.items.registries.ProgressBars;
+import com.github.aws404.polyui.util.PolyUiUtils;
 import com.github.aws404.polyui.util.SpriteSlot;
 import eu.pb4.polymer.item.VirtualBlockItem;
 import eu.pb4.sgui.api.ClickType;
@@ -57,10 +60,9 @@ public class ModInit implements ModInitializer {
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             dispatcher.register(CommandManager.literal("gui_test")
                     .executes(context -> {
+                        SimpleGui gui = new SimpleGui(ScreenHandlerType.GENERIC_9X6, context.getSource().getPlayer(), false);
+
                         Inventory inv = new SimpleInventory(3);
-
-                        SimpleGui gui = new SimpleGui(ScreenHandlerType.GENERIC_9X3, context.getSource().getPlayer(), false);
-
                         gui.setSlotRedirect(0, new SpriteSlot(inv, 0, GuiSprites.INGOT));
                         gui.setSlot(1, SpriteGuiItem.getSpriteStack(GuiSprites.PLUS));
                         gui.setSlotRedirect(2, new SpriteSlot(inv, 1, GuiSprites.POWDER));
@@ -83,6 +85,17 @@ public class ModInit implements ModInitializer {
                         gui.setSlotRedirect(12, new ArmorSlot(context.getSource().getPlayer().getInventory(), GuiSprites.BOOTS, EquipmentSlot.FEET));
                         gui.setSlotRedirect(13, new SpriteSlot(context.getSource().getPlayer().getInventory(), PlayerInventory.OFF_HAND_SLOT, GuiSprites.SHIELD));
 
+                        int slot = 27;
+                        for (Identifier id : GuiSprites.getIds()) {
+                            gui.setSlot(slot, SpriteGuiItem.getSpriteStack(id));
+                            slot++;
+                        }
+
+                        for (Identifier id : ProgressBars.getIds()) {
+                            gui.setSlot(slot, new ProgressBarElementBuilder().setProgressType(id).setProgressStateLogic(new ProgressBarElement.RepeatingStateLogic(80)));
+                            slot++;
+                        }
+
                         gui.open();
                         return 1;
                     })
@@ -102,13 +115,8 @@ public class ModInit implements ModInitializer {
 
                              @Override
                              public boolean onAnyClick(int index, ClickType type, SlotActionType action) {
-                                 if (index > 4 && type.shift) {
-                                     int playerIndex;
-                                     if (index >= 32) {
-                                         playerIndex = index - 32;
-                                     } else {
-                                         playerIndex = index + 4;
-                                     }
+                                 if (index > this.getSize() && type.shift) {
+                                     int playerIndex = PolyUiUtils.getPlayerSlotFromGui(this, index);
                                      this.player.getInventory().setStack(playerIndex, ItemStack.EMPTY);
                                      return false;
                                  }
