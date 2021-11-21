@@ -29,7 +29,7 @@ public class TriFurnaceScreen extends SimpleGui {
 
         // Fuel Slot
         this.setSlotRedirect(19, new FurnaceFuelSlot(this.blockEntity, 0));
-        this.setSlot(10, new ProgressBarElementBuilder().setProgressType(ProgressBars.FUEL).setProgressSupplier(this::getFuelPercent));
+        this.setSlot(10, new ProgressBarElementBuilder().setProgressBarType(ProgressBars.FUEL).setProgressSupplier(this::getFuelPercent));
 
         // Furnace 1
         this.setSlotRedirect(3, new Slot(this.blockEntity, 1, 0, 0));

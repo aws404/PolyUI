@@ -3,6 +3,7 @@ package com.github.aws404.polyui.util;
 import eu.pb4.sgui.api.SlotHolder;
 import eu.pb4.sgui.api.elements.GuiElementBuilderInterface;
 import eu.pb4.sgui.api.elements.GuiElementInterface;
+import net.minecraft.screen.slot.Slot;
 
 import java.util.function.Supplier;
 

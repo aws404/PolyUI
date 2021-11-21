@@ -34,7 +34,7 @@ public class GuiSprites {
     public static final Identifier TRASH = register("trash");
 
     public static Identifier register(String path) {
-        Identifier id = new Identifier(PolyUIMod.MODID, "gui/slot_backgrounds/" + path);
+        Identifier id = new Identifier(PolyUIMod.MODID, "gui/sprites/" + path);
         MODEL_DATA.put(id, ResourcePackUtils.requestCustomModelData(Items.ITEM_FRAME, id));
         return id;
     }

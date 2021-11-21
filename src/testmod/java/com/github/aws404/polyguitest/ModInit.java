@@ -8,12 +8,14 @@ import com.github.aws404.polyguitest.grinder.GrinderBlockEntity;
 import com.github.aws404.polyui.elements.BlankElement;
 import com.github.aws404.polyui.elements.ProgressBarElement;
 import com.github.aws404.polyui.elements.ProgressBarElementBuilder;
+import com.github.aws404.polyui.elements.StatedElementBuilder;
 import com.github.aws404.polyui.items.SpriteGuiItem;
 import com.github.aws404.polyui.items.registries.GuiSprites;
 import com.github.aws404.polyui.items.registries.ProgressBars;
 import com.github.aws404.polyui.util.PolyUiUtils;
 import com.github.aws404.polyui.util.SpriteSlot;
 import eu.pb4.polymer.item.VirtualBlockItem;
+import eu.pb4.polymer.resourcepack.ResourcePackUtils;
 import eu.pb4.sgui.api.ClickType;
 import eu.pb4.sgui.api.elements.GuiElementBuilder;
 import eu.pb4.sgui.api.gui.SimpleGui;
@@ -40,10 +42,14 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.GameMode;
 
 public class ModInit implements ModInitializer {
+
+    public static Identifier GRINDER_PROGRESS_BAR = ProgressBars.register("grinder");
 
     public static Block TRI_FURNACE_BLOCK = Registry.register(Registry.BLOCK, "polyui_test:tri_furnace", new TriFurnaceBlock(FabricBlockSettings.of(Material.METAL)));
     public static BlockEntityType<TriFurnaceBlockEntity> TRI_FURNACE_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, "polyui_test:tri_furnace", FabricBlockEntityTypeBuilder.create(TriFurnaceBlockEntity::new, ModInit.TRI_FURNACE_BLOCK).build());
@@ -57,6 +63,8 @@ public class ModInit implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        ResourcePackUtils.addModAsAssetsSource("polygui_test");
+
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             dispatcher.register(CommandManager.literal("gui_test")
                     .executes(context -> {
@@ -85,6 +93,12 @@ public class ModInit implements ModInitializer {
                         gui.setSlotRedirect(12, new ArmorSlot(context.getSource().getPlayer().getInventory(), GuiSprites.BOOTS, EquipmentSlot.FEET));
                         gui.setSlotRedirect(13, new SpriteSlot(context.getSource().getPlayer().getInventory(), PlayerInventory.OFF_HAND_SLOT, GuiSprites.SHIELD));
 
+                        gui.setSlot(16, StatedElementBuilder.forBoolean()
+                                .setBooleanStateSupplier(() -> gui.getPlayer().getAbilities().flying)
+                                .addState(StatedElementBuilder.Boolean.TRUE, new GuiElementBuilder(Items.FEATHER).setName(new LiteralText("Flying!")))
+                                .addState(StatedElementBuilder.Boolean.FALSE, new GuiElementBuilder(Items.BARRIER).setName(new LiteralText("Not Flying!")))
+                        );
+
                         int slot = 27;
                         for (Identifier id : GuiSprites.getIds()) {
                             gui.setSlot(slot, SpriteGuiItem.getSpriteStack(id));
@@ -92,7 +106,7 @@ public class ModInit implements ModInitializer {
                         }
 
                         for (Identifier id : ProgressBars.getIds()) {
-                            gui.setSlot(slot, new ProgressBarElementBuilder().setProgressType(id).setProgressStateLogic(new ProgressBarElement.RepeatingStateLogic(80)));
+                            gui.setSlot(slot, new ProgressBarElementBuilder().setProgressBarType(id).setProgressStateLogic(new ProgressBarElement.RepeatingStateLogic(80)));
                             slot++;
                         }
 
@@ -106,9 +120,18 @@ public class ModInit implements ModInitializer {
                          new SimpleGui(ScreenHandlerType.HOPPER, context.getSource().getPlayer(), false) {
                              {
                                  this.setTitle(new LiteralText("              Trash Can"));
-                                 this.setSlot(2, GuiElementBuilder.from(SpriteGuiItem.getSpriteStack(GuiSprites.TRASH))
-                                        .setCallback((index, type, action, gui1) -> gui1.getPlayer().currentScreenHandler.setCursorStack(ItemStack.EMPTY))
-                                );
+                                 this.setSlot(2, new StatedElementBuilder<>(GameMode.class)
+                                         .setStateSupplier(player.interactionManager::getGameMode)
+                                         .setDefaultElement(new GuiElementBuilder(Items.BARRIER, 1)
+                                                 .setName((MutableText) LiteralText.EMPTY)
+                                         )
+                                         .addState(GameMode.SURVIVAL, GuiElementBuilder.from(SpriteGuiItem.getSpriteStack(GuiSprites.FULL))
+                                                 .setCallback((index, type, action, gui1) -> gui1.getPlayer().currentScreenHandler.setCursorStack(ItemStack.EMPTY))
+                                         )
+                                         .addState(GameMode.CREATIVE, GuiElementBuilder.from(SpriteGuiItem.getSpriteStack(GuiSprites.TRASH))
+                                                 .setCallback((index, type, action, gui1) -> gui1.getPlayer().currentScreenHandler.setCursorStack(ItemStack.EMPTY))
+                                         )
+                                 );
                                 BlankElement.fill(this);
                                 this.open();
                             }

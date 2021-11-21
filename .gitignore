@@ -5,6 +5,8 @@ build/
 out/
 classes/
 
+*.tmp
+
 # eclipse
 
 *.launch
@@ -31,3 +33,4 @@ bin/
 # fabric
 
 run/
+*.tmp

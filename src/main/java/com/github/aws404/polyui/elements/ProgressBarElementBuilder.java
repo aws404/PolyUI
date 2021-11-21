@@ -15,12 +15,6 @@ public class ProgressBarElementBuilder implements GuiElementBuilderInterface<Pro
     private int startProgress = 0;
     private Identifier type = ProgressBars.ARROW;
 
-    @Override
-    public ProgressBarElementBuilder setCallback(GuiElementInterface.ClickCallback callback) {
-        this.clickCallback = callback;
-        return this;
-    }
-
     /**
      * Set the progress logic of the bar to increase uniformly, according to the supplied time
      * @param progressTicks the time in ticks for the bar to fill
@@ -69,7 +63,7 @@ public class ProgressBarElementBuilder implements GuiElementBuilderInterface<Pro
      * @param type the registered progress bar <code>Identifier</code>
      * @return this element builder
      */
-    public ProgressBarElementBuilder setProgressType(Identifier type) {
+    public ProgressBarElementBuilder setProgressBarType(Identifier type) {
         this.type = type;
         return this;
     }
@@ -82,6 +76,12 @@ public class ProgressBarElementBuilder implements GuiElementBuilderInterface<Pro
      */
     public ProgressBarElementBuilder setStartProgressState(int startProgress) {
         this.startProgress = startProgress;
+        return this;
+    }
+
+    @Override
+    public ProgressBarElementBuilder setCallback(GuiElementInterface.ClickCallback callback) {
+        this.clickCallback = callback;
         return this;
     }
 
