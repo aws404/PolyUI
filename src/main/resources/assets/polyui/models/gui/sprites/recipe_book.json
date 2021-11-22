@@ -1,0 +1,11 @@
+{
+  "parent": "polyui:gui/base",
+  "textures": {
+    "layer0": "polyui:gui/recipe_book"
+  },
+  "display": {
+    "gui": {
+      "scale": [1.1, 1.1, 1]
+    }
+  }
+}

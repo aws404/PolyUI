@@ -14,6 +14,7 @@ public class GuiSprites {
     private static final HashMap<Identifier, CMDInfo> MODEL_DATA = new HashMap<>();
 
     public static final Identifier BANNER = register("banner");
+    public static final Identifier BLOCK = register("block");
     public static final Identifier BOOTS = register("boots");
     public static final Identifier BOTTLE = register("bottle");
     public static final Identifier CARPET = register("carpet");
@@ -29,6 +30,7 @@ public class GuiSprites {
     public static final Identifier PATTERN = register("pattern");
     public static final Identifier PLUS = register("plus");
     public static final Identifier POWDER = register("powder");
+    public static final Identifier RECIPE_BOOK = register("recipe_book");
     public static final Identifier SADDLE = register("saddle");
     public static final Identifier SHIELD = register("shield");
     public static final Identifier TRASH = register("trash");
