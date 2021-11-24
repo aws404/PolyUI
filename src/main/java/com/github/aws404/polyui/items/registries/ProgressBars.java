@@ -20,7 +20,7 @@ public class ProgressBars {
 
     public static Identifier register(String path) {
         Identifier id = new Identifier(PolyUIMod.MODID, "gui/progress/" + path);
-        Int2ObjectBiMap<CMDInfo> data = new Int2ObjectBiMap<>(11);
+        Int2ObjectBiMap<CMDInfo> data = Int2ObjectBiMap.create(11);
         for (int i = 0; i <= 10; i++) {
             data.add(ResourcePackUtils.requestCustomModelData(Items.ITEM_FRAME, new Identifier(PolyUIMod.MODID, "gui/progress/" + path + "/progress_" + i)));
         }

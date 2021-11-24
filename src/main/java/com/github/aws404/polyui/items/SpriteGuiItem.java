@@ -19,7 +19,7 @@ public class SpriteGuiItem extends AbstractGuiItem {
     }
 
     @Override
-    public int getCustomModelData(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
+    public int getPolymerCustomModelData(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
         Identifier sprite = new Identifier(itemStack.getOrCreateNbt().getString("Sprite"));
 
         if (!GuiSprites.containsModelData(sprite)) {

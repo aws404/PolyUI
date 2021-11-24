@@ -14,8 +14,8 @@ import com.github.aws404.polyui.items.registries.GuiSprites;
 import com.github.aws404.polyui.items.registries.ProgressBars;
 import com.github.aws404.polyui.util.PolyUiUtils;
 import com.github.aws404.polyui.util.SpriteSlot;
+import eu.pb4.polymer.api.resourcepack.PolymerRPUtils;
 import eu.pb4.polymer.item.VirtualBlockItem;
-import eu.pb4.polymer.resourcepack.ResourcePackUtils;
 import eu.pb4.sgui.api.ClickType;
 import eu.pb4.sgui.api.elements.GuiElementBuilder;
 import eu.pb4.sgui.api.gui.SimpleGui;
@@ -63,7 +63,7 @@ public class ModInit implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ResourcePackUtils.addModAsAssetsSource("polygui_test");
+        PolymerRPUtils.addAssetSource("polyui_test");
 
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
             dispatcher.register(CommandManager.literal("gui_test")

@@ -19,7 +19,8 @@ public class BlankGuiItem extends AbstractGuiItem {
     }
 
     @Override
-    public int getCustomModelData(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
+    public int getPolymerCustomModelData(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
         return this.modelData.value();
     }
+    
 }

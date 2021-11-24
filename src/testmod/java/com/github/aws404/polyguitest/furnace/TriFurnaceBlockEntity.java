@@ -106,7 +106,7 @@ public class TriFurnaceBlockEntity extends LockableContainerBlockEntity implemen
     }
 
     public void dropExperienceForRecipesUsed(ServerPlayerEntity player, int slot) {
-        List<Recipe<?>> list = this.getRecipesUsedAndDropExperience(slot, player.getServerWorld(), player.getPos());
+        List<Recipe<?>> list = this.getRecipesUsedAndDropExperience(slot, player.getWorld(), player.getPos());
         player.unlockRecipes(list);
         this.recipesUsed[slot].clear();
     }

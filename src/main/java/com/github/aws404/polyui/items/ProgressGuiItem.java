@@ -17,7 +17,7 @@ public class ProgressGuiItem extends AbstractGuiItem {
     }
 
     @Override
-    public int getCustomModelData(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
+    public int getPolymerCustomModelData(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
         Identifier type = new Identifier(itemStack.getOrCreateNbt().getString("Type"));
         if (!ProgressBars.containsModelData(type)) {
             PolyUIMod.LOGGER.error("Tried to use an un-registered progress bar '{}', reverting to default", type.toString());

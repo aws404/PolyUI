@@ -4,6 +4,7 @@ import com.github.aws404.polyui.items.AbstractGuiItem;
 import com.github.aws404.polyui.items.BlankGuiItem;
 import com.github.aws404.polyui.items.ProgressGuiItem;
 import com.github.aws404.polyui.items.SpriteGuiItem;
+import eu.pb4.polymer.api.resourcepack.PolymerRPUtils;
 import eu.pb4.polymer.resourcepack.ResourcePackUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -32,6 +33,7 @@ public class PolyUIMod implements ModInitializer {
 		LOGGER.info("- {} version: {}", polymerData.getName(), polymerData.getVersion());
 		LOGGER.info("- {} version: {}", sguiData.getName(), sguiData.getVersion());
 
-		ResourcePackUtils.addModAsAssetsSource(MODID);
+		PolymerRPUtils.addAssetSource(MODID);
+		PolymerRPUtils.markAsRequired();
 	}
 }
