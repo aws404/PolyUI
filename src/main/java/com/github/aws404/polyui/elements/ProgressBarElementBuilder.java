@@ -1,9 +1,9 @@
 package com.github.aws404.polyui.elements;
 
-import com.github.aws404.polyui.items.registries.ProgressBars;
+import com.github.aws404.polyui.items.ProgressGuiItem;
+import com.github.aws404.polyui.registries.ProgressBar;
 import eu.pb4.sgui.api.elements.GuiElementBuilderInterface;
 import eu.pb4.sgui.api.elements.GuiElementInterface;
-import net.minecraft.util.Identifier;
 
 import java.util.function.Supplier;
 
@@ -13,7 +13,7 @@ public class ProgressBarElementBuilder implements GuiElementBuilderInterface<Pro
     private ProgressBarElement.ProgressStateChangeCallback completeCallback = ProgressBarElement.BLANK_STATE_CHANGE_CALLBACK;
     private ProgressBarElement.ProgressStateLogic stateLogic = ProgressBarElement.BLANK_PROGRESS_LOGIC;
     private int startProgress = 0;
-    private Identifier type = ProgressBars.ARROW;
+    private ProgressBar type = ProgressGuiItem.DEFAULT_PROGRESS_BAR;
 
     /**
      * Set the progress logic of the bar to increase uniformly, according to the supplied time
@@ -59,11 +59,11 @@ public class ProgressBarElementBuilder implements GuiElementBuilderInterface<Pro
 
     /**
      * Set the type of progress bar to use. This must be a registered progress bar type so the textures can all be loaded correctly.
-     * @see ProgressBars#register(String) for more regarding registering progress bar types
+     * @see ProgressBar#register(String) for more regarding registering progress bar types
      * @param type the registered progress bar <code>Identifier</code>
      * @return this element builder
      */
-    public ProgressBarElementBuilder setProgressBarType(Identifier type) {
+    public ProgressBarElementBuilder setProgressBarType(ProgressBar type) {
         this.type = type;
         return this;
     }

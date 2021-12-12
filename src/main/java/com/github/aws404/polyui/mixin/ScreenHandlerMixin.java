@@ -1,6 +1,8 @@
 package com.github.aws404.polyui.mixin;
 
+import com.github.aws404.polyui.PolyUIMod;
 import com.github.aws404.polyui.items.SpriteGuiItem;
+import com.github.aws404.polyui.registries.GuiSprite;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -27,8 +29,8 @@ public abstract class ScreenHandlerMixin {
     private ItemStack getPacketStackAtSendContentUpdates(Slot slot) {
         if (!slot.hasStack() && slot.getBackgroundSprite() != null) {
             Pair<Identifier, Identifier> spriteData = slot.getBackgroundSprite();
-            if (spriteData.getFirst() == SpriteGuiItem.SPRITE_ITEM_SHEET) {
-                return SpriteGuiItem.getSpriteStack(spriteData.getSecond());
+            if (spriteData.getFirst() == GuiSprite.SPRITE_ITEM_SHEET) {
+                return SpriteGuiItem.getSpriteStack(PolyUIMod.GUI_SPRITES_REGISTRY.get(spriteData.getSecond()));
             }
         }
         return slot.getStack();
@@ -38,8 +40,8 @@ public abstract class ScreenHandlerMixin {
     private ItemStack getPacketStackAtUpdateToClient(Slot slot) {
         if (!slot.hasStack() && slot.getBackgroundSprite() != null) {
             Pair<Identifier, Identifier> spriteData = slot.getBackgroundSprite();
-            if (spriteData.getFirst() == SpriteGuiItem.SPRITE_ITEM_SHEET) {
-                return SpriteGuiItem.getSpriteStack(spriteData.getSecond());
+            if (spriteData.getFirst() == GuiSprite.SPRITE_ITEM_SHEET) {
+                return SpriteGuiItem.getSpriteStack(PolyUIMod.GUI_SPRITES_REGISTRY.get(spriteData.getSecond()));
             }
         }
         return slot.getStack();
@@ -49,8 +51,8 @@ public abstract class ScreenHandlerMixin {
     private ItemStack getPacketStackAtGetStacks(Slot slot) {
         if (!slot.hasStack() && slot.getBackgroundSprite() != null) {
             Pair<Identifier, Identifier> spriteData = slot.getBackgroundSprite();
-            if (spriteData.getFirst() == SpriteGuiItem.SPRITE_ITEM_SHEET) {
-                return SpriteGuiItem.getSpriteStack(spriteData.getSecond());
+            if (spriteData.getFirst() == GuiSprite.SPRITE_ITEM_SHEET) {
+                return SpriteGuiItem.getSpriteStack(PolyUIMod.GUI_SPRITES_REGISTRY.get(spriteData.getSecond()));
             }
         }
         return slot.getStack();
@@ -60,8 +62,8 @@ public abstract class ScreenHandlerMixin {
     private ItemStack getPacketStackAtSyncState(Slot slot) {
         if (!slot.hasStack() && slot.getBackgroundSprite() != null) {
             Pair<Identifier, Identifier> spriteData = slot.getBackgroundSprite();
-            if (spriteData.getFirst() == SpriteGuiItem.SPRITE_ITEM_SHEET) {
-                return SpriteGuiItem.getSpriteStack(spriteData.getSecond());
+            if (spriteData.getFirst() == GuiSprite.SPRITE_ITEM_SHEET) {
+                return SpriteGuiItem.getSpriteStack(PolyUIMod.GUI_SPRITES_REGISTRY.get(spriteData.getSecond()));
             }
         }
         return slot.getStack();
@@ -73,7 +75,7 @@ public abstract class ScreenHandlerMixin {
             Slot slot = this.slots.get(slotIndex);
             if (!slot.hasStack() && slot.getBackgroundSprite() != null) {
                 Pair<Identifier, Identifier> spriteData = slot.getBackgroundSprite();
-                if (spriteData.getFirst() == SpriteGuiItem.SPRITE_ITEM_SHEET) {
+                if (spriteData.getFirst() == GuiSprite.SPRITE_ITEM_SHEET) {
                     this.updateToClient();
                 }
             }

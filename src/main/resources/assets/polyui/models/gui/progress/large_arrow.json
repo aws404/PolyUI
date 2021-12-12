@@ -1,0 +1,68 @@
+{
+  "parent": "polyui:gui/progress/large_arrow/large_arrow_base",
+  "textures": {
+    "layer0": "polyui:gui/progress/arrow/progress_0"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "damage": 0.1
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_1"
+    },
+    {
+      "predicate": {
+        "damage": 0.2
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_2"
+    },
+    {
+      "predicate": {
+        "damage": 0.3
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_3"
+    },
+    {
+      "predicate": {
+        "damage": 0.4
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_4"
+    },
+    {
+      "predicate": {
+        "damage": 0.5
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_5"
+    },
+    {
+      "predicate": {
+        "damage": 0.6
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_6"
+    },
+    {
+      "predicate": {
+        "damage": 0.7
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_7"
+    },
+    {
+      "predicate": {
+        "damage": 0.8
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_8"
+    },
+    {
+      "predicate": {
+        "damage": 0.9
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_9"
+    },
+    {
+      "predicate": {
+        "damage": 1.0
+      },
+      "model": "polyui:gui/progress/large_arrow/progress_invalid"
+    }
+  ]
+}

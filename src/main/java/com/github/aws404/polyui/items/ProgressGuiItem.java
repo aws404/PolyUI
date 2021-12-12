@@ -1,36 +1,44 @@
 package com.github.aws404.polyui.items;
 
 import com.github.aws404.polyui.PolyUIMod;
-import com.github.aws404.polyui.items.registries.ProgressBars;
+import com.github.aws404.polyui.registries.ProgressBar;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 public class ProgressGuiItem extends AbstractGuiItem {
 
-    private final Identifier defaultBar;
+    public static final ProgressBar DEFAULT_PROGRESS_BAR = ProgressBar.ARROW;
 
     public ProgressGuiItem(Settings settings) {
         super(settings);
-        this.defaultBar = ProgressBars.ARROW;
+    }
+
+    @Override
+    public ItemStack getPolymerItemStack(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
+        ItemStack stack = super.getPolymerItemStack(itemStack, player);
+        stack.addHideFlag(ItemStack.TooltipSection.UNBREAKABLE);
+        stack.getOrCreateNbt().putBoolean("Unbreakable", true);
+        return stack;
     }
 
     @Override
     public int getPolymerCustomModelData(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
         Identifier type = new Identifier(itemStack.getOrCreateNbt().getString("Type"));
-        if (!ProgressBars.containsModelData(type)) {
-            PolyUIMod.LOGGER.error("Tried to use an un-registered progress bar '{}', reverting to default", type.toString());
-            itemStack.getOrCreateNbt().putString("Type", this.defaultBar.toString());
-            type = this.defaultBar;
-        }
-
-        return ProgressBars.getModelData(type).get(itemStack.getDamage()).value();
+        return ProgressBar.getModelData(type).value();
     }
 
-    public static ItemStack getProgressStack(Identifier type) {
+    @Override
+    public Item getPolymerItem(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
+        return Items.WOODEN_SWORD;
+    }
+
+    public static ItemStack getProgressStack(ProgressBar type) {
         ItemStack stack = new ItemStack(PolyUIMod.PROGRESS_GUI_ITEM);
-        stack.getOrCreateNbt().putString("Type", type.toString());
+        stack.getOrCreateNbt().putString("Type", PolyUIMod.PROGRESS_BARS_REGISTRY.getId(type).toString());
         return stack;
     }
 

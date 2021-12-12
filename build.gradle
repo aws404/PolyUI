@@ -55,6 +55,7 @@ dependencies {
 	modImplementation "eu.pb4:sgui:${project.sgui_version}"
 	modImplementation "eu.pb4:polymer:${project.polymer_version}"
 
+	testmodRuntimeOnly "com.github.aws404:polypack-host:0.0.1"
 	testmodImplementation sourceSets.main.output
 }
 

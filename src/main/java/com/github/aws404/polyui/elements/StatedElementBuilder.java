@@ -93,7 +93,7 @@ public class StatedElementBuilder<T extends Enum<T>> implements GuiElementBuilde
     @Override
     public StatedElementBuilder<T> setCallback(GuiElementInterface.ClickCallback callback) {
         this.globalCallback = callback;
-        return null;
+        return this;
     }
 
     /**

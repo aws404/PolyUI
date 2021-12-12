@@ -1,10 +1,10 @@
 package com.github.aws404.polyui.elements;
 
 import com.github.aws404.polyui.items.ProgressGuiItem;
+import com.github.aws404.polyui.registries.ProgressBar;
 import eu.pb4.sgui.api.elements.GuiElementInterface;
 import eu.pb4.sgui.api.gui.GuiInterface;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.function.Supplier;
@@ -21,11 +21,11 @@ public class ProgressBarElement implements GuiElementInterface {
     protected final ClickCallback clickCallback;
     protected final ProgressStateChangeCallback progressStateChangeCallback;
     protected final ProgressStateLogic logic;
-    protected final Identifier type;
+    protected final ProgressBar type;
 
     private int progress;
 
-    public ProgressBarElement(ClickCallback clickCallback, ProgressStateChangeCallback progressStateChangeCallback, ProgressStateLogic logic, Identifier type, int startProgressState) {
+    public ProgressBarElement(ClickCallback clickCallback, ProgressStateChangeCallback progressStateChangeCallback, ProgressStateLogic logic, ProgressBar type, int startProgressState) {
         this.clickCallback = clickCallback;
         this.progressStateChangeCallback = progressStateChangeCallback;
         this.logic = logic;
@@ -145,8 +145,8 @@ public class ProgressBarElement implements GuiElementInterface {
         @Override
         public void tick(ProgressBarElement element) {
             this.currentProgressTicks++;
-            float pct = this.currentProgressTicks / (float) this.totalProgressTicks;
-            if (pct <= 1) {
+            if (this.currentProgressTicks <= this.totalProgressTicks) {
+                float pct = this.currentProgressTicks / (float) this.totalProgressTicks;
                 int newProgressState = (int) MathHelper.lerp(pct, 0, 9);
 
                 if (element.progress != newProgressState) {

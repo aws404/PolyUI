@@ -1,6 +1,0 @@
-{
-  "parent": "polyui:gui/base",
-  "textures": {
-    "layer0": "polyui_test:gui/progress/grinder/progress_0"
-  }
-}
